@@ -1,0 +1,42 @@
+﻿<Window x:Class="ThucHanh2.NhapPS"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ThucHanh2"
+        mc:Ignorable="d"
+        Title="Nhập dữ liệu" Height="300" Width="400">
+    <Canvas>
+        <Canvas.Resources>
+            <Style TargetType="Label">
+                <Setter Property="FontSize" Value="20"></Setter>
+            </Style>
+            <Style TargetType="TextBox">
+                <Setter Property="Canvas.Top" Value="120"></Setter>
+                <Setter Property="Width" Value="80"></Setter>
+                <Setter Property="Height" Value="40"></Setter>
+                <Setter Property="FontSize" Value="20"></Setter>
+            </Style>
+            <Style TargetType="Button">
+                <Setter Property="Width" Value="100"></Setter>
+                <Setter Property="Height" Value="30"></Setter>
+                <Setter Property="Canvas.Top" Value="180"></Setter>
+                <Setter Property="FontSize" Value="15"></Setter>
+            </Style>
+        </Canvas.Resources>
+        <TextBlock Canvas.Top="40" VerticalAlignment="Top" 
+                   Canvas.Left="100" FontSize="30" FontWeight="Bold" FontStyle="Italic">
+            Nhập Phân số
+        </TextBlock>
+        <Label Canvas.Top="120" Canvas.Left="50">
+            Tử:
+        </Label>
+        <Label Canvas.Top="120" Canvas.Left="200">
+            Mẫu:
+        </Label>
+        <TextBox x:Name="tblTS" Canvas.Left="100"></TextBox>
+        <TextBox x:Name="tblMS" Canvas.Left="260"></TextBox>
+        <Button x:Name="btnAccept" Canvas.Left="100" Click="BtnAccept_Click">Chấp nhận</Button>
+        <Button x:Name="btnEscape" Canvas.Left="260" Click="BtnEscape_Click">thoát</Button>
+    </Canvas>
+</Window>

@@ -1,0 +1,85 @@
+﻿<Window x:Class="ThucHanh1.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ThucHanh1"
+        mc:Ignorable="d"
+        ResizeMode="NoResize"
+        Title="Chương trình tính toán" Height="350" Width="600" KeyUp="Window_KeyUp">
+    <Canvas KeyUp="Canvas_KeyUp">
+        <TextBlock x:Name="tblIntro"
+                   Canvas.Left="150" 
+                   TextWrapping="Wrap" 
+                   Text="Chương trình tính toán" Canvas.Top="10"
+                   FontSize="30"
+                   FontWeight="Bold"
+                   FontFamily="Helvatica"/>
+        <Label x:Name="lblSo"
+               Canvas.Top="70"
+               Canvas.Left="70"
+               Width="40"
+               Height="40"
+               FontSize="20">
+            Số:
+        </Label>
+        <Label x:Name="lblKetQua"
+               Canvas.Top="120"
+               Canvas.Left="25"
+               Width="85"
+               Height="40"
+               FontSize="20">
+            Kết quả:
+        </Label>
+        <TextBox x:Name="tblNhap"
+                 Canvas.Top="70"
+                 Canvas.Left="110"
+                 Height="40"
+                 Width="100"
+                 IsEnabled="True"
+                 FontSize="20" TextInput="tblNhap_TextInput" KeyUp="TblNhap_KeyUp">
+            
+        </TextBox>
+        <TextBox x:Name="tblXuat"
+                 Canvas.Top="120"
+                 Canvas.Left="110"
+                 Height="40"
+                 Width="180"
+                 IsEnabled="False"
+                 FontSize="20">
+
+        </TextBox>
+        <Button x:Name="btnBP"
+                Canvas.Top="70"
+                Canvas.Left="350"
+                Height="40"
+                Width="100"
+                FontSize="15"
+                Content="Bình Phương">
+        </Button>
+        <Button x:Name="btnLP"
+                Canvas.Top="120"
+                Canvas.Left="350"
+                Height="40"
+                Width="100"
+                FontSize="15"
+                Content="Lập Phương">
+        </Button>
+        <Button x:Name="btnGT"
+                Canvas.Top="170"
+                Canvas.Left="350"
+                Height="40"
+                Width="100"
+                FontSize="15"
+                Content="Giai Thừa">
+        </Button>
+        <Button x:Name="btnExit"
+                Canvas.Bottom="40"
+                Canvas.Left="250"
+                Width="100"
+                Height="40"
+                FontSize="15"
+                Content="Thoát">
+        </Button>
+    </Canvas>
+</Window>
