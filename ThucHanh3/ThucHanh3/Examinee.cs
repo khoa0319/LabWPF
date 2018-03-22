@@ -29,6 +29,10 @@ namespace ThucHanh3
             Subject3 = subject3;
         }
 
+        /// <summary>
+        /// Get the Sum of all subjects
+        /// </summary>
+        /// <returns></returns>
         public virtual double GetTotal() => Subject1 + Subject2 + Subject3;
 
     }

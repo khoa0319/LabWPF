@@ -28,20 +28,41 @@ namespace ThucHanh3
             InitializeComponent();
             proExaminees = new List<ProExaminee>();
             cupExaminees = new List<CupExaminee>();
-            dataGridPE.ItemsSource = proExaminees;
-            datagridCE.ItemsSource = cupExaminees;
-            windowInput = new InsertWindow();
 
+            dataGridPE.ItemsSource = proExaminees; 
+            datagridCE.ItemsSource = cupExaminees;
+
+            windowInput = new InsertWindow(); //create InsertWindow
+
+            //parse data into datagrid
             btnCreate.Click += (sender, e) =>
             {
                 windowInput.ShowDialog();
                 if (windowInput.Examinee is ProExaminee)
                 {
-                    proExaminees.Add(windowInput.Examinee as ProExaminee);
+                    ProExaminee pro = windowInput.Examinee as ProExaminee;
+
+                    proExaminees.Add(pro);
+
+                    //refresh value
+                    dataGridPE.Items.Refresh();
                 }
                 else
-                    cupExaminees.Add(windowInput.Examinee as CupExaminee);
+                {
+                    CupExaminee cup = windowInput.Examinee as CupExaminee;
+                    cupExaminees.Add(cup);
+                    datagridCE.Items.Refresh();
+                }
             };
-        }
+
+            //close application
+            btnExit.Click += (sender, e) =>
+            {
+                this.Visibility = Visibility.Hidden;
+                Application.Current.Shutdown();
+            };
+
+
+        }       
     }
 }

@@ -57,6 +57,8 @@ namespace ThucHanh3
                     txtDiemCSDL.IsEnabled = true;
                 }
             };
+
+            //create object (Examinee) data to parse to mainWindow
             butChapNhan.Click += (sender, e) =>
             {
                 int id = int.Parse(txtSoBD.Text);
