@@ -23,17 +23,17 @@ namespace ThucHanh3
         private List<ProExaminee> proExaminees;
         private List<CupExaminee> cupExaminees;
         private InsertWindow windowInput;
+        private UpdateWindow windowUpdate;
         public MainWindow()
         {
             InitializeComponent();
-            proExaminees = new List<ProExaminee>();
+            proExaminees = ProExaminee.Getdata();
             cupExaminees = new List<CupExaminee>();
 
             dataGridPE.ItemsSource = proExaminees; 
             datagridCE.ItemsSource = cupExaminees;
 
-            windowInput = new InsertWindow(); //create InsertWindow
-
+            windowInput = new InsertWindow(); // create InsertWindow           
             //parse data into datagrid
             btnCreate.Click += (sender, e) =>
             {
@@ -62,7 +62,65 @@ namespace ThucHanh3
                 Application.Current.Shutdown();
             };
 
+            btnUpdate.Click += (sender, e) =>
+            {
+                if (IsCheckedDataGrid())
+                {
+                    windowUpdate = new UpdateWindow();
+                    if (dataGridPE.SelectedItem != null && datagridCE.SelectedItem == null)
+                    {
+                        windowUpdate.Examinee = dataGridPE.SelectedItem as ProExaminee;
+                        windowUpdate.radChuyen.IsChecked = true;
+                        windowUpdate.radSieuCup.IsEnabled = false;
+                        windowUpdate.txtDiemCSDL.IsEnabled = false;
+                        windowUpdate.ShowDialog();
+                    }
+                    if (datagridCE.SelectedItem != null && dataGridPE.SelectedItem == null)
+                    {
+                        windowUpdate.Examinee = datagridCE.SelectedItem as CupExaminee;
+                        windowUpdate.radSieuCup.IsChecked = true;
+                        windowUpdate.radChuyen.IsEnabled = false;
+                        windowUpdate.txtDiemTAnh.IsEnabled = false;
+                        windowUpdate.ShowDialog();
+                    }
+                }
+                return;
+            };
 
+            //selection changed event
+            //dataGridPE.SelectionChanged += (sender, e) =>
+            //{
+            //    var selectedItem = dataGridPE.SelectedItem as ProExaminee;
+            //    MessageBox.Show(selectedItem.Name);
+            //};
+
+
+            //delete Examinee
+            btnDelete.Click += (sender, e) =>
+            {
+                IsCheckedDataGrid();
+                if (datagridCE.SelectedItem != null && dataGridPE.SelectedItem == null)
+                {
+                    cupExaminees.Remove((CupExaminee)datagridCE.SelectedItem);
+                    datagridCE.Items.Refresh();
+                }
+                if (dataGridPE.SelectedItem != null && datagridCE.SelectedItem == null)
+                {
+                    proExaminees.Remove((ProExaminee)dataGridPE.SelectedItem);
+                    dataGridPE.Items.Refresh();
+                }
+            };
         }       
+
+        
+        private bool IsCheckedDataGrid()
+        {
+            if (datagridCE.SelectedItem == null && dataGridPE.SelectedItem == null)
+            {
+                MessageBox.Show("bạn phải chọn thí sinh cần xóa");
+                return false;
+            }
+            return true;
+        }
     }
 }

@@ -21,7 +21,7 @@ namespace ThucHanh3
     {
         private Examinee examinee;
         public InsertWindow()
-        {            
+        {
             InitializeComponent();
             //nhap Chuyen
             radChuyen.Click += (sender, e) =>
@@ -79,6 +79,11 @@ namespace ThucHanh3
                 }
                 this.Visibility = Visibility.Hidden;
             };
+
+            butThoat.Click += (sender, e) =>
+           {
+               this.Close();
+           };
 
         }
 

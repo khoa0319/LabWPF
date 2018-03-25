@@ -34,7 +34,7 @@ namespace ThucHanh2
 
             //close app comppletely
             this.Closing += (handler, e) =>
-            {                
+            {
                 this.Visibility = Visibility.Hidden;
                 Application.Current.Shutdown();
             };
