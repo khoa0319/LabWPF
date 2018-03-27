@@ -1,0 +1,87 @@
+﻿<Window x:Class="ThucHanh4.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ThucHanh4"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <Grid x:Name="gridMain" Background="#eee">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="2*"></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <StackPanel Grid.Column="0" Margin="10, 50, 0, 0">
+            <StackPanel.Resources>
+                <Style TargetType="Label">
+                    <Setter Property="FontSize" Value="18"></Setter>
+                    <Setter Property="Margin" Value="10, 5, 0, 0"></Setter>
+                    <Setter Property="Width" Value="150"></Setter>
+                </Style>
+                <Style TargetType="TextBox">
+                    <Setter Property="Height" Value="30"></Setter>
+                    <Setter Property="Width" Value="200"></Setter>
+                    <Setter Property="Margin" Value="5, 0, 0, 0"></Setter>
+                </Style>
+            </StackPanel.Resources>
+            <StackPanel Orientation="Horizontal">
+                <Label Content="Mã Nhân Viên: "></Label>
+                <TextBox x:Name="txtID" Width="200"></TextBox>
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal">
+                <Label Content="Họ Tên: "></Label>
+                <TextBox x:Name="txtName" Width="349"></TextBox>
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal">
+                <Label Content="Ngày Sinh: "></Label>
+                <DatePicker x:Name="datePicker" Height="30" Width="349"
+                            Margin="5, 0, 0, 0"></DatePicker>
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal">
+                <Label Content="Địa chỉ: "></Label>
+                <TextBox x:Name="txtAddress" Width="349"></TextBox>
+            </StackPanel>
+
+            <StackPanel>
+                <DataGrid x:Name="dtEmployee"
+                          ScrollViewer.CanContentScroll="True"
+                          ScrollViewer.VerticalScrollBarVisibility="Auto" ScrollViewer.HorizontalScrollBarVisibility="Auto"
+                      AutoGenerateColumns="False" SelectionMode="Single"
+                      Width="511" Height="200" HorizontalContentAlignment="Center" CanUserAddRows="False">
+                    <DataGrid.Resources>
+                        <Style TargetType="DataGridRow">
+                            <Setter Property="Height" Value="25"></Setter>
+                        </Style>
+                    </DataGrid.Resources>
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="Mã Nhân viên" Width="111" Binding="{Binding ID}"/>
+                        <DataGridTextColumn Header="Họ tên" Width="133" Binding="{Binding Name}"/>
+                        <DataGridTextColumn Header="Ngày sinh" Width="133" Binding="{Binding BirthDate}"/>
+                        <DataGridTextColumn Header="Địa chỉ" Width="133" Binding="{Binding Address}"/>
+                    </DataGrid.Columns>
+                </DataGrid>
+            </StackPanel>
+
+        </StackPanel>
+        <GroupBox Grid.Column="1" Header="Chức năng"
+                  HorizontalContentAlignment="Center" HorizontalAlignment="Center"
+                  VerticalAlignment="Top" Margin="0, 50, 0, 0">
+            <StackPanel Height="150" Width="100" VerticalAlignment="Top">
+                <StackPanel.Resources>
+                    <Style TargetType="Button">
+                        <Setter Property="Height" Value="30"></Setter>
+                        <Setter Property="Width" Value="80"></Setter>
+                        <Setter Property="Margin" Value="0, 5, 0, 0"></Setter>
+                    </Style>
+                </StackPanel.Resources>
+                <Button x:Name="btnCreate" Content="Thêm"></Button>
+                <Button x:Name="btnDelete" Content="Xóa"></Button>
+                <Button x:Name="btnUpdate" Content="Cập nhật"></Button>
+                <Button x:Name="btnExit" Content="Thoát"></Button>
+            </StackPanel>
+        </GroupBox>
+    </Grid>
+</Window>

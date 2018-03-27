@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ThucHanh3"
         mc:Ignorable="d"
-        Title="Danh Sách Thí Sinh" Height="500" Width="791">
+        Title="Danh Sách Thí Sinh" Height="800" Width="791">
     <StackPanel>
         <TextBox FontSize="40" FontStyle="Italic" FontWeight="Bold"
                  HorizontalAlignment="Center" Margin="0, 40, 0, 0">
@@ -15,7 +15,7 @@
             Danh sách các thí sinh chuyên
         </TextBox>
         <DataGrid x:Name="dataGridPE" 
-                  AutoGenerateColumns="False" FontSize="20"
+                  AutoGenerateColumns="False"
                   Width="750" SelectionMode="Single">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Số báo danh" Binding="{Binding Path=ID, Mode=OneWay}" Width="150"/>
@@ -31,7 +31,7 @@
             Danh sách các thí sinh siêu cúp
         </TextBox>
         <DataGrid x:Name="datagridCE" AutoGenerateColumns="False" 
-                  FontSize="20" Width="750">
+                  Width="750">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Số báo danh" Binding="{Binding ID}" Width="150"/>
                 <DataGridTextColumn Header="Họ Tên" Binding="{Binding Name}" Width="250"/>
