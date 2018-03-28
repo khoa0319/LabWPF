@@ -13,6 +13,11 @@ namespace ThucHanh4
         public DateTime BirthDate { get; set; }
         public string Address { get; set; }
 
+        public string DateOfBirth
+        {
+            get => BirthDate.ToShortDateString();
+        }
+
         public Employee(string id, string name, DateTime date, string address)
         {
             ID = id;

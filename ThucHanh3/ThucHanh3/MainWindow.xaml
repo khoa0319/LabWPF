@@ -16,21 +16,23 @@
         </TextBox>
         <DataGrid x:Name="dataGridPE" 
                   AutoGenerateColumns="False"
+                  CanUserAddRows="False"
                   Width="750" SelectionMode="Single">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Số báo danh" Binding="{Binding Path=ID, Mode=OneWay}" Width="150"/>
-                <DataGridTextColumn Header="Họ Tên" Binding="{Binding Path=Name, Mode=OneWay}" Width="250"/>
-                <DataGridTextColumn Header="Bài 1" Binding="{Binding Path=Subject1, Mode=OneWay}" Width="50"/>
-                <DataGridTextColumn Header="Bài 2" Binding="{Binding Path=Subject2, Mode=OneWay}" Width="50"/>
-                <DataGridTextColumn Header="Bài 3" Binding="{Binding Path=Subject3, Mode=OneWay}" Width="50"/>
-                <DataGridTextColumn Header="Tiếng Anh" Binding="{Binding Path=English, Mode=OneWay}" Width="100"/>
-                <DataGridTextColumn Header="Tổng" Binding="{Binding Path=Total, Mode=OneWay}" Width="100"/>
+                <DataGridTextColumn Header="Số báo danh" Binding="{Binding Path=ID}" Width="150"/>
+                <DataGridTextColumn Header="Họ Tên" Binding="{Binding Path=Name}" Width="250"/>
+                <DataGridTextColumn Header="Bài 1" Binding="{Binding Path=Subject1}" Width="50"/>
+                <DataGridTextColumn Header="Bài 2" Binding="{Binding Path=Subject2}" Width="50"/>
+                <DataGridTextColumn Header="Bài 3" Binding="{Binding Path=Subject3}" Width="50"/>
+                <DataGridTextColumn Header="Tiếng Anh" Binding="{Binding Path=English}" Width="100"/>
+                <DataGridTextColumn Header="Tổng" Binding="{Binding Path=Total}" Width="100"/>
             </DataGrid.Columns>
         </DataGrid>
         <TextBox FontSize="25" Margin="0, 20, 0, 0">
             Danh sách các thí sinh siêu cúp
         </TextBox>
         <DataGrid x:Name="datagridCE" AutoGenerateColumns="False" 
+                  CanUserAddRows="False"
                   Width="750">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Số báo danh" Binding="{Binding ID}" Width="150"/>

@@ -77,7 +77,7 @@ namespace ThucHanh3
                     diem4 = double.Parse(txtDiemCSDL.Text);
                     Examinee = new CupExaminee(id, name, diem1, diem2, diem3, diem4);
                 }
-                this.Visibility = Visibility.Hidden;
+                this.Close();
             };
 
             butThoat.Click += (sender, e) =>

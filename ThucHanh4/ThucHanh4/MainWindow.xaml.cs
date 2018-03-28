@@ -21,7 +21,7 @@ namespace ThucHanh4
     public partial class MainWindow : Window
     {
         private List<Employee> lst;
-        private Employee stored;
+        private Employee stored; // chua du lieu khi cap nhat 
         public MainWindow()
         {
             InitializeComponent();
@@ -32,16 +32,27 @@ namespace ThucHanh4
             //create a employee
             btnCreate.Click += (sender, e) =>
             {
+                //ResetInputField();
+
+                if (!IsFullInformation())
+                {
+                    MessageBox.Show("Bạn phải nhập đủ thông tin", "warning", MessageBoxButton.OK, MessageBoxImage.Asterisk);
+                    return;
+                }
+                
                 Employee em = new Employee
                 {
                     ID = txtID.Text,
                     Name = txtName.Text,
-                    BirthDate = (DateTime)datePicker.SelectedDate,
+                    BirthDate = datePicker.SelectedDate.Value,
                     Address = txtAddress.Text
                 };
                 lst.Add(em);
+
                 ResetInputField();
+
                 dtEmployee.Items.Refresh();
+                txtID.Focus();
             };
 
             //remove an employee
@@ -52,8 +63,14 @@ namespace ThucHanh4
                     MessageBox.Show("bạn hãy chọn ô cần xóa");
                     return;
                 }
-                lst.Remove(lst.Find(em => em.ID == ((Employee)dtEmployee.SelectedItem).ID));
-                dtEmployee.Items.Refresh();
+                MessageBoxResult result = MessageBox.Show("bạn có muốn xóa nhân viên này?", "warning", MessageBoxButton.YesNo, MessageBoxImage.Question);
+                if (result == MessageBoxResult.Yes)
+                {
+                    lst.Remove(lst.Find(em => em.ID == ((Employee)dtEmployee.SelectedItem).ID));
+                    dtEmployee.Items.Refresh();
+                    ResetInputField();
+                }
+                
             };
 
             dtEmployee.SelectionChanged += (sender, e) =>
@@ -63,6 +80,7 @@ namespace ThucHanh4
                     stored = dtEmployee.SelectedItem as Employee;
                     Employee emp = dtEmployee.SelectedItem as Employee;
                     txtID.Text = emp.ID;
+                    txtID.IsEnabled = false;
                     txtName.Text = emp.Name;
                     txtAddress.Text = emp.Address;
                     datePicker.SelectedDate = emp.BirthDate;
@@ -82,6 +100,8 @@ namespace ThucHanh4
                 stored.Address = txtAddress.Text;
                 stored.BirthDate = (DateTime)datePicker.SelectedDate;
                 dtEmployee.Items.Refresh();
+                ResetInputField();
+                dtEmployee.SelectedItem = null;
             };
            
             //escape the program
@@ -95,10 +115,14 @@ namespace ThucHanh4
 
         private void ResetInputField()
         {
+            if (!txtID.IsEnabled)
+                txtID.IsEnabled = true;
             txtAddress.Text = "";
             txtID.Text = "";
             txtName.Text = "";
-            datePicker.DisplayDate = DateTime.Today;
+            datePicker.SelectedDate = DateTime.Today;
         }
+
+        private bool IsFullInformation() => txtName.Text != "" && txtID.Text != "" && txtAddress.Text != "" && datePicker.SelectedDate != null;
     }
 }

@@ -33,10 +33,11 @@ namespace ThucHanh3
             dataGridPE.ItemsSource = proExaminees; 
             datagridCE.ItemsSource = cupExaminees;
 
-            windowInput = new InsertWindow(); // create InsertWindow           
+            //windowInput = new InsertWindow(); // create InsertWindow           
             //parse data into datagrid
             btnCreate.Click += (sender, e) =>
             {
+                windowInput = new InsertWindow();
                 windowInput.ShowDialog();
                 if (windowInput.Examinee is ProExaminee)
                 {

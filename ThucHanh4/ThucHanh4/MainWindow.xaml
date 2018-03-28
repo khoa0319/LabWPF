@@ -46,21 +46,24 @@
             </StackPanel>
 
             <StackPanel>
-                <DataGrid x:Name="dtEmployee"
+                <DataGrid x:Name="dtEmployee" Margin="10, 0, 0, 0"
                           ScrollViewer.CanContentScroll="True"
-                          ScrollViewer.VerticalScrollBarVisibility="Auto" ScrollViewer.HorizontalScrollBarVisibility="Auto"
-                      AutoGenerateColumns="False" SelectionMode="Single"
-                      Width="511" Height="200" HorizontalContentAlignment="Center" CanUserAddRows="False">
-                    <DataGrid.Resources>
+                          ScrollViewer.VerticalScrollBarVisibility="Auto"
+                          AutoGenerateColumns="False" SelectionMode="Single"
+                          Width="500" Height="200" HorizontalContentAlignment="Center" 
+                          CanUserAddRows="False">
+                    
+                    <!--<DataGrid.Resources>
                         <Style TargetType="DataGridRow">
                             <Setter Property="Height" Value="25"></Setter>
                         </Style>
-                    </DataGrid.Resources>
+                    </DataGrid.Resources>-->
+                    
                     <DataGrid.Columns>
-                        <DataGridTextColumn Header="Mã Nhân viên" Width="111" Binding="{Binding ID}"/>
-                        <DataGridTextColumn Header="Họ tên" Width="133" Binding="{Binding Name}"/>
-                        <DataGridTextColumn Header="Ngày sinh" Width="133" Binding="{Binding BirthDate}"/>
-                        <DataGridTextColumn Header="Địa chỉ" Width="133" Binding="{Binding Address}"/>
+                        <DataGridTextColumn Header="Mã Nhân viên" Width="100" Binding="{Binding ID}"/>
+                        <DataGridTextColumn Header="Họ tên" Width="150" Binding="{Binding Name}"/>
+                        <DataGridTextColumn Header="Ngày sinh" Width="110" Binding="{Binding DateOfBirth}"/>
+                        <DataGridTextColumn Header="Địa chỉ" Width="140" Binding="{Binding Address}"/>
                     </DataGrid.Columns>
                 </DataGrid>
             </StackPanel>
