@@ -17,16 +17,30 @@ namespace ThucHanh5_6
         public string Name { get; set; }
         public DateTime? BirthDate { get; set; }
         public string Address { get; set; }
-        public Employee()
+        public string DepartmentRoomId { get; set; }
+    }
+    public class DepartmentRoom
+    {
+        [Required]
+        public string Id { get; set; }
+        public string Name { get; set; }
+        [ForeignKey("DepartmentRoomId")]
+        public ICollection<Employee> Employees { get; set; }
+        public DepartmentRoom()
         {
 
         }
-
+        public DepartmentRoom(DepartmentRoom room)
+        {
+            this.Employees = room.Employees;
+            this.Id = room.Id;
+            this.Name = room.Name;
+        }
     }
-
 
     public class MyContext : DbContext
     {
         public DbSet<Employee> Employees { get; set; }
+        public DbSet<DepartmentRoom> DepartmentRooms { get; set; }
     }
 }

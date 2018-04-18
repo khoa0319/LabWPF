@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.Entity;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -22,15 +23,14 @@ namespace ThucHanh5_6
     public partial class MainWindow : Window
     {
         private Employee employee;
+        private Department department;
+        private FilterWindow fwd;
         public MainWindow()
         {
             InitializeComponent();
-
             //get employees in the database
-            using (var context = new MyContext())
-            {
-                gridNv.ItemsSource = context.Employees.ToList();
-            }
+            //for the Employee
+            LoadDatabase();
 
             //add employee
             btnAdd.Click += (sender, e) =>
@@ -41,8 +41,10 @@ namespace ThucHanh5_6
                    {
                        Id = int.Parse(txtId.Text),
                        Name = txtName.Text,
-                       BirthDate = dtpDate.SelectedDate?? DateTime.Now,
-                       Address = txtAddress.Text
+                       BirthDate = dtpDate.SelectedDate ?? DateTime.Now,
+                       Address = txtAddress.Text,
+                       DepartmentRoomId = cbDepartment.SelectedValue as string
+                       
                    };
                    myContext.Employees.Add(n);
                    myContext.SaveChanges();
@@ -91,14 +93,43 @@ namespace ThucHanh5_6
                 gridNv.SelectedItem = null;
                 ResetTxt();
             };
+            //for the Department
+            btnAddDe.Click += (sender, e) =>
+            {
+                department = new Department();
+                department.ShowDialog();
+                using (var context = new MyContext())
+                {
+                    cbDepartment.ItemsSource = context.DepartmentRooms.ToList();
+                    cbDepartment.DisplayMemberPath = "Name";
+                    cbDepartment.SelectedValuePath = "Id";
+                    cbDepartment.SelectedIndex = 0;
+                }
+            };
 
             //Exit window
             btnExit.Click += (sender, e) =>
             {
                 this.Close();
             };
+            //filter button
+            btnFilter.Click += (sender, e) =>
+            {
+                fwd = new FilterWindow();
+                fwd.ShowDialog();
+            };
         }
-
+        private void LoadDatabase()
+        {
+            using (var context = new MyContext())
+            {
+                gridNv.ItemsSource = context.Employees.ToList();
+                cbDepartment.ItemsSource = context.DepartmentRooms.ToList();
+                cbDepartment.DisplayMemberPath = "Name";
+                cbDepartment.SelectedValuePath = "Id";
+                cbDepartment.SelectedIndex = 0;
+            }
+        }
         private void LoadToTxt(Employee e)
         {
             txtId.Text = e.Id.ToString();
@@ -121,6 +152,21 @@ namespace ThucHanh5_6
             txtName.Text = "";
             txtAddress.Text = "";
             dtpDate.SelectedDate = DateTime.Now;
+        }
+
+        
+    }
+    public class MyConverter : IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            DepartmentRoom dr = value as DepartmentRoom;
+            return dr == null ? "" : dr.Name;
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            throw new NotImplementedException();
         }
     }
 }

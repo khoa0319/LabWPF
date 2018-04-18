@@ -5,8 +5,11 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ThucHanh5_6"
         mc:Ignorable="d"
-        Title="MainWindow" Height="365" Width="600">
-    <Canvas>
+        Title="MainWindow" Height="465" Width="600">
+    <Window.Resources>
+        <local:MyConverter x:Key="key1"/>
+    </Window.Resources>
+    <Canvas Margin="0,0,0.333,1">
         <!--Style Canvas-->
         <Canvas.Resources>
             <Style TargetType="Label">
@@ -41,26 +44,38 @@
         <TextBox Name="txtAddress"
                  Width="295" Height="25"
                  Margin="120,115" />
+
+        <Label Content="Phòng Ban:"
+               Margin="10,140"/>
+        <ComboBox x:Name="cbDepartment" Width="150" Height="25"
+                  Margin="120,145">
+        </ComboBox>
+        <Button x:Name="btnAddDe" Content="..." Width="100" Height="25"
+                Margin="295, 145">
+        </Button>
         <!--Danh sách nhân viên-->
         <DataGrid Name="gridNv"
                   Width="400" Height="165"
-                  Margin="15,145"
+                  Margin="15,190"
                   AutoGenerateColumns="False"
                   SelectionMode="Single" 
                   CanUserAddRows="False">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Mã nhân viên"
+                <DataGridTextColumn Header="MãNV"
                                     Binding="{Binding Id}"
-                                    Width="100"/>
+                                    Width="50"/>
                 <DataGridTextColumn Header="Họ tên"
                                     Binding="{Binding Name}"
-                                    Width="100"/>
+                                    Width="90"/>
                 <DataGridTextColumn Header="Ngày sinh"
                                     Binding="{Binding BirthDate}"
-                                    Width="100"/>
+                                    Width="90"/>
                 <DataGridTextColumn Header="Địa chỉ"
                                     Binding="{Binding Address}"
-                                    Width="100"/>
+                                    Width="90"/>
+                <DataGridTextColumn Header="Phòng ban"
+                                    Binding="{Binding DepartmentRoomId}"
+                                    Width="80"/>
             </DataGrid.Columns>
         </DataGrid>
         <!--Các nút chức năng-->
@@ -84,8 +99,13 @@
                         Content="Thoát"
                         Width="100" Height="25"
                         Margin="7,5"/>
+                <Button Name="btnFilter"
+                        Content="Lọc"
+                        Width="100" Height="25"
+                        Margin="7,5"/>
             </StackPanel>
 
         </GroupBox>
+        <Label Content="" Canvas.Left="15" Canvas.Top="378" Width="70"/>
     </Canvas>
 </Window>
